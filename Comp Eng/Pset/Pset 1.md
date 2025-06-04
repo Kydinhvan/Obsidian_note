@@ -108,5 +108,3 @@ This firmware contains just enough logic to:
 > - Could security or stability be compromised if the boot process were modified?
 
 
-
-hello
