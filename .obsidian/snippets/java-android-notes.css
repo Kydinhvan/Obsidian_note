@@ -1,0 +1,82 @@
+/* Headers */
+h1 {
+    font-size: 2em;
+    border-bottom: 2px solid #888;
+    padding-bottom: 6px;
+    margin-bottom: 16px;
+  }
+  
+  h2 {
+    font-size: 1.6em;
+    color: #2e86de;
+    margin-top: 24px;
+    border-left: 4px solid #2e86de;
+    padding-left: 10px;
+  }
+  
+  h3 {
+    font-size: 1.3em;
+    color: #0c2461;
+    margin-top: 20px;
+  }
+  
+  /* Code blocks */
+  pre code {
+    background-color: #1e1e1e;
+    color: #dcdcdc;
+    border-radius: 8px;
+    padding: 12px;
+    font-family: "Fira Code", "Courier New", monospace;
+    line-height: 1.4;
+    font-size: 0.9em;
+    display: block;
+    overflow-x: auto;
+  }
+  
+  /* Inline code */
+  code {
+    background-color: #f2f2f2;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.95em;
+  }
+  
+  /* Callout block tweaks */
+  .callout {
+    border-left: 4px solid #333;
+    padding: 12px;
+    background-color: #fafafa;
+    border-radius: 8px;
+  }
+  
+  .callout[data-callout="tip"] {
+    border-left-color: #27ae60;
+    background-color: #eafaf1;
+  }
+  
+  .callout[data-callout="warning"] {
+    border-left-color: #e67e22;
+    background-color: #fdf3e7;
+  }
+  
+  .callout[data-callout="example"] {
+    border-left-color: #2980b9;
+    background-color: #ecf6fd;
+  }
+  
+  /* Tags */
+  .cm-s-obsidian span.cm-hashtag {
+    color: #2e86de;
+    font-weight: 500;
+  }
+  
+  /* Checkbox spacing */
+  ul.contains-task-list li.task-list-item {
+    margin-bottom: 6px;
+  }
+  
+  /* Code block shadows */
+  pre code {
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  }
+  
