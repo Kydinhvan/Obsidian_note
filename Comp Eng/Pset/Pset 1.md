@@ -107,4 +107,14 @@ This firmware contains just enough logic to:
 > - What’s special about ROM in this context?
 > - Could security or stability be compromised if the boot process were modified?
 
+## ANS
+1. It is a paradox because you need the program to be loaded in the memory to be executed. However when a computer powered on, there is nothing in the memory to be executed. This create the paradox
+2. The firmware is a special program that get loaded into RAM to be executed by CPU from a dedicated ROM. Because ROM is non-volatile and is hardwired, its instructions are **always available** at startup. The BIOS starts by initializing and preparing attached hardware devices so that it is ready to be used by OS. It then locate the **bootloader**  from disk, load and start the **OS kernel** by copying it into RAM. Lastly, it hand over control to kernel.
+3. When Kernel get loaded into RAM, it takes over the booting process with the system in kernel mode. It continue to set up by initiating drivers, managing memory by setting up page table, handle any interrupts. Afterwards, it will loads the rest of the OS and goes into user mode.
+4. If boot process was tampered with or failed
+	- If the firmware can't locate a valid bootloader or kernel, the system might get stuck or display errors. 
+	- If an attacker replaces the bootloader or kernel with malicious code, they can bypass security checks and hide from antivirus tools entirely since they load first
+	- If the kernel image is damaged or incompatible, the system may crash or reboot in a loop.
 
+---
+# Why We Need Both Kernel and Drivers?

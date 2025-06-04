@@ -72,7 +72,7 @@ After Bios is loaded onto the main memory thru hardwired procedures, CPU execute
 1. Prep all attached devices so that it is ready to be used by OS
 2. Loads other programs 
 3. Loads Kernel from disk
-4. When sys boots, hardware starts in kernel mode and kernel will perform the most of the set ups (driver init, mem management, interrupts). -> the rest of OS then loaded  -> user processes are started in user mode
+4. When sys boots, hardware starts in kernel mode and kernel will perform the most of the set ups (driver init, mem management by setting up page table, interrupts). -> the rest of OS then loaded  -> user processes are started in user mode
 
 ---
 #### Acronyms
