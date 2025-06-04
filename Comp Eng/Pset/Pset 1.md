@@ -107,3 +107,6 @@ This firmware contains just enough logic to:
 > - What’s special about ROM in this context?
 > - Could security or stability be compromised if the boot process were modified?
 
+
+
+hello

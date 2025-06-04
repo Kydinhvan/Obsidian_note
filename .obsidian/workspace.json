@@ -112,7 +112,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 205.5
+    "width": 205.5,
+    "collapsed": true
   },
   "right": {
     "id": "2f895b329ed31d42",
@@ -211,10 +212,10 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "f5687e07f0311167",
+  "active": "e3567a1cdcd5b2f1",
   "lastOpenFiles": [
-    "Comp Eng/Pset/Pset 1.md",
     "Comp Eng/Processes.md",
+    "Comp Eng/Pset/Pset 1.md",
     "Comp Eng/Introduction to OS.md",
     "Comp Eng/OS Kernel Roles.md",
     "Comp Eng/Operating System as a Service.md",
