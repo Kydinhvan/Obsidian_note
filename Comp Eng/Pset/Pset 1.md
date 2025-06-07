@@ -150,4 +150,16 @@ Modern OSes use a _modular_ approach, keeping the kernel minimal and extensibl
 2. Driver in kernel vs user mode
 	- In kernel mode, there is less overhead. The drivers don't have to make system calls However, if a drive is poorly designed, malicious program might take advantage of that to get access to the kernel
 	- Vice versa. In user mode, there is more overhead due to the constant system calls. But malicious program can't gain access to the kernel thru driver anymore even if the driver is badly made
-3. 
+3. A buggy driver in kernel mode can:
+	- **Crash the system** 
+    - **Corrupt memory**, affecting other parts of the OS
+
+**For developers:**
+    - They can build, test, and distribute drivers independently of the kernel.
+    - It allows for faster iteration and bug fixing without waiting for kernel updates.
+    - Hardware manufacturers can support their devices directly without relying on OS vendors.
+
+**For end users:**
+    - They only need to install drivers relevant to their hardware, saving space and reducing complexity.
+    - They can update or replace drivers without reinstalling or rebooting the whole OS.
+    - A faulty or outdated driver can be swapped out without affecting the core system.

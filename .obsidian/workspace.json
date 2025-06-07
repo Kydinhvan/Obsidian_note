@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "6a7851ebd2f4a5c4",
+        "id": "409db7e3db561bb7",
         "type": "tabs",
         "children": [
           {
-            "id": "e3567a1cdcd5b2f1",
+            "id": "5c9856b00aeb9ec3",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -20,31 +20,15 @@
               "icon": "lucide-file",
               "title": "Processes"
             }
-          },
-          {
-            "id": "63a7ca2b366222a3",
-            "type": "leaf",
-            "state": {
-              "type": "split-diff-view",
-              "state": {
-                "aFile": ".obsidian/workspace.json",
-                "bFile": ".obsidian/workspace.json",
-                "aRef": "HEAD",
-                "bRef": ""
-              },
-              "icon": "diff",
-              "title": "Diff: workspace.json"
-            }
           }
-        ],
-        "currentTab": 1
+        ]
       },
       {
-        "id": "f9f51a3e4410d544",
+        "id": "dfe9b527e4227113",
         "type": "tabs",
         "children": [
           {
-            "id": "a109408e2fcd2dd0",
+            "id": "b252162e528727d5",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -213,12 +197,13 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "53c937469eaa76f4",
+  "active": "b252162e528727d5",
   "lastOpenFiles": [
     "Comp Eng/Processes.md",
-    "Comp Eng/OS Kernel Roles.md",
     "Comp Eng/Pset/Pset 1.md",
     "Comp Eng/Operating System as a Service.md",
+    "Comp Eng/Introduction to OS.md",
+    "Comp Eng/OS Kernel Roles.md",
     "conflict-files-obsidian-git.md",
     "pic/Pasted image 20250605162217.png",
     "pic/Pasted image 20250605162211.png",
@@ -235,7 +220,6 @@
     "Pasted image 20250605210242.png",
     "WQ",
     "Comp Eng/LAB/Lab 2 - Time of Check, Time of Use Attack.md",
-    "Comp Eng/Introduction to OS.md",
     "Element of Software construct/Express.js.md",
     "Element of Software construct/React.md",
     "Comp Eng/Pset",
