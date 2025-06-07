@@ -146,3 +146,8 @@ Modern OSes use a _modular_ approach, keeping the kernel minimal and extensibl
 
 ## Ans
 
+1.  All drivers can't just compiled permanently into the kernel as with each new version being made or across being made, the data it send or required might differ. This means we would need to standardize all brands of diff devices to follow specific format to be able to communicate with the OS kernel and the OS kernel driver would require an update if new devices come out (which is very often). Hence, this is an inefficient, impractical way to utilize hardware, which is why diff drivers are made so that user would only need to install the one that they need and not everything else.
+2. Driver in kernel vs user mode
+	- In kernel mode, there is less overhead. The drivers don't have to make system calls However, if a drive is poorly designed, malicious program might take advantage of that to get access to the kernel
+	- Vice versa. In user mode, there is more overhead due to the constant system calls. But malicious program can't gain access to the kernel thru driver anymore even if the driver is badly made
+3. 
