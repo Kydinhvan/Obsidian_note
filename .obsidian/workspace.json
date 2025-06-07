@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Comp Eng/Introduction to OS.md",
+                "file": "Comp Eng/Pset/Pset 1.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Introduction to OS"
+              "title": "Pset 1"
             }
           }
         ]
@@ -207,11 +207,13 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "ac18203c679a82e1",
+  "active": "f5687e07f0311167",
   "lastOpenFiles": [
-    "Comp Eng/Pset/Pset 1.md",
-    "Comp Eng/Introduction to OS.md",
     "Comp Eng/Processes.md",
+    "Comp Eng/LAB/Lab 2 - Time of Check, Time of Use Attack.md",
+    "Comp Eng/LAB/Lab 1 Shell -CLI.md",
+    "Comp Eng/Introduction to OS.md",
+    "Comp Eng/Pset/Pset 1.md",
     "images/cc2_ex3.png.md",
     "pic/Pasted image 20250605162217.png",
     "pic/Pasted image 20250605162211.png",
@@ -245,7 +247,6 @@
     "Element of Software construct/Node.js.md",
     "Element of Software construct/Cohort Excercise/CH1/Exercise 1.md",
     "Element of Software construct/Cohort Excercise/CH1",
-    "Comp Eng/LAB/Lab 1 Shell -CLI.md",
     "Comp Eng/LAB",
     "Database/ER Model.md",
     "Database/Intro to Database.md",
