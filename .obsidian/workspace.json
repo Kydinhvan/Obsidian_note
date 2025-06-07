@@ -25,17 +25,19 @@
             "id": "63a7ca2b366222a3",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "split-diff-view",
               "state": {
-                "file": "Comp Eng/OS Kernel Roles.md",
-                "mode": "source",
-                "source": false
+                "aFile": ".obsidian/workspace.json",
+                "bFile": ".obsidian/workspace.json",
+                "aRef": "HEAD",
+                "bRef": ""
               },
-              "icon": "lucide-file",
-              "title": "OS Kernel Roles"
+              "icon": "diff",
+              "title": "Diff: workspace.json"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       },
       {
         "id": "f9f51a3e4410d544",
@@ -47,12 +49,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Comp Eng/Operating System as a Service.md",
+                "file": "Comp Eng/Pset/Pset 1.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Operating System as a Service"
+              "title": "Pset 1"
             }
           }
         ]
@@ -211,11 +213,17 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "0ea587afda8c29de",
+  "active": "53c937469eaa76f4",
   "lastOpenFiles": [
     "Comp Eng/Processes.md",
     "Comp Eng/OS Kernel Roles.md",
+    "Comp Eng/Pset/Pset 1.md",
     "Comp Eng/Operating System as a Service.md",
+    "conflict-files-obsidian-git.md",
+    "pic/Pasted image 20250605162217.png",
+    "pic/Pasted image 20250605162211.png",
+    "pic/Parson Puzzle for Algorithm.md",
+    "README.md",
     "WQ/Alpha.md",
     "Pasted image 20250605212228.png",
     "Pasted image 20250605212043.png",
@@ -225,12 +233,8 @@
     "Pasted image 20250605210945.png",
     "Pasted image 20250605210942.png",
     "Pasted image 20250605210242.png",
-    "Pasted image 20250605205548.png",
-    "Pasted image 20250605205120.png",
-    "Comp Eng/Pset/Pset 1.md",
     "WQ",
     "Comp Eng/LAB/Lab 2 - Time of Check, Time of Use Attack.md",
-    "conflict-files-obsidian-git.md",
     "Comp Eng/Introduction to OS.md",
     "Element of Software construct/Express.js.md",
     "Element of Software construct/React.md",
@@ -251,9 +255,7 @@
     "Element of Software construct/Node.js.md",
     "Element of Software construct/Cohort Excercise/CH1/Exercise 1.md",
     "Element of Software construct/Cohort Excercise/CH1",
-    "Comp Eng/LAB/Lab 1 Shell -CLI.md",
     "Comp Eng/LAB",
-    "Database/ER Model.md",
     "PDF NOTE/cse-01.pdf",
     "Element of Software construct/Cohort Excercise",
     "PDF NOTE/Week 2 - Relational Model.pdf",
