@@ -55,6 +55,7 @@ Driver that run in **user mode is slower** because frequent switching to kernel 
 Does NOT endanger the sys like accidentally overwrite kernel mem.
 
 Driver run in kernel mode, vulnerabilities in the driver can allow attacker to get highest level privileges
+[[Pset 1#Why We Need Both Kernel and Drivers?|Pset Driver Q]]
 
 ---
 #### Booting

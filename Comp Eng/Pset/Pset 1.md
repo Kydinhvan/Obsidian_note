@@ -117,4 +117,37 @@ This firmware contains just enough logic to:
 	- If the kernel image is damaged or incompatible, the system may crash or reboot in a loop.
 
 ---
+
 # Why We Need Both Kernel and Drivers?
+
+The OS kernel already has full access to the hardware. So why do we need device drivers? Couldn’t all hardware be handled directly by the kernel itself? In fact, why not just compile all drivers into the kernel?
+
+While the kernel is the core of the OS with unrestricted access to hardware, it delegates many hardware-specific tasks to device drivers. Device drivers are modular programs that know how to talk to specific devices like printers, graphics cards, or network adapters.
+
+Drivers can be: 
+- Kernel-mode drivers: Fast, but risky. Bugs can crash the system.
+- User-mode drivers: Safer, but slower. We must make frequent system calls to access hardware.
+
+Modern OSes use a _modular_ approach, keeping the kernel minimal and extensible, while allowing drivers to be updated or swapped without rebuilding the whole OS.
+
+**Answer the following questions:**
+
+1. Why aren’t all drivers just compiled permanently into the kernel?
+2. What are the trade-offs between running drivers in user mode vs kernel mode?
+3. What could go wrong if a buggy driver runs in kernel mode?
+4. How does this modular approach help both developers and end users?
+
+> **Hints**:
+> 
+> - Think about how often new hardware gets released.
+> - Who writes the drivers? The OS vendor or the hardware manufacturer?
+> - What happens if a graphics driver crashes while in kernel mode?
+> - What is the difference between performance and fault isolation?
+
+## Ans
+
+1.  All drivers can't just compiled permanently into the kernel as with each new version being made or across being made, the data it send or required might differ. This means we would need to standardize all brands of diff devices to follow specific format to be able to communicate with the OS kernel and the OS kernel driver would require an update if new devices come out (which is very often). Hence, this is an inefficient, impractical way to utilize hardware, which is why diff drivers are made so that user would only need to install the one that they need and not everything else.
+2. Driver in kernel vs user mode
+	- In kernel mode, there is less overhead. The drivers don't have to make system calls However, if a drive is poorly designed, malicious program might take advantage of that to get access to the kernel
+	- Vice versa. In user mode, there is more overhead due to the constant system calls. But malicious program can't gain access to the kernel thru driver anymore even if the driver is badly made
+3. 
