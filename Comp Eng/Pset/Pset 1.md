@@ -117,9 +117,7 @@ This firmware contains just enough logic to:
 	- If the kernel image is damaged or incompatible, the system may crash or reboot in a loop.
 
 ---
-<<<<<<< HEAD
-# Why We Need Both Kernel and Drivers
-=======
+
 # Why We Need Both Kernel and Drivers?
 
 The OS kernel already has full access to the hardware. So why do we need device drivers? Couldn’t all hardware be handled directly by the kernel itself? In fact, why not just compile all drivers into the kernel?
@@ -147,4 +145,4 @@ Modern OSes use a _modular_ approach, keeping the kernel minimal and extensibl
 > - What is the difference between performance and fault isolation?
 
 ## Ans
->>>>>>> origin/main
+
