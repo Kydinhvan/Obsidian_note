@@ -117,4 +117,4 @@ This firmware contains just enough logic to:
 	- If the kernel image is damaged or incompatible, the system may crash or reboot in a loop.
 
 ---
-# Why We Need Both Kernel and Drivers?
+# Why We Need Both Kernel and Drivers
