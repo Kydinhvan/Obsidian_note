@@ -6,11 +6,45 @@ Web framework for webserver application dev in Node.js
 
 Express.js adopts Model View Controller architecture, a web design pattern. It groups packages and modules based on their roles and functionalities:
 1. **Models**. model packages define the data being stored in  storage sys such as databases, and abstract away operations for data manipulation.
-2. **View**. The view packages define representation and format of the requested data being returned to the client.
-3. **Controller**. The controller packages define rules and routes of how user can request for and operate over the content and data.
+2. **View**. The view packages define representation and format of the requested data being returned to the client. - **view, public**
+3. **Controller**. The controller packages define rules and routes of how user can request for and operate over the content and data. - **router, app.js**
 <div align="center">
 <img src="Pasted image 20250603131428.png", width = 500>
 </div>
+
+## Routes
+```js
+router.get('/add/:code', async (req, res) => {
+  const code = req.params.code;
+``` 
+`router.get('/add/:code')` define a GET request handler that trigger when URL match route pattern w **URL parameter** called `code` 
+- `:code` part is a **placeholder**
+- `/dept/add/hr` Express matches this route
+
+### `req`: the request object
+| Property      | What it gives you                             |
+| ------------- | --------------------------------------------- |
+| `req.params`  | URL path parameters like `:id`, `:code`       |
+| `req.query`   | Query string values (e.g. `/search?q=abc`)    |
+| `req.body`    | Data sent in POST/PUT requests (form or JSON) |
+| `req.headers` | HTTP headers                                  |
+| `req.method`  | GET, POST, etc.                               |
+| `req.url`     | The full URL path                             |
+### `res`: the response object
+| Method                   | Description                |
+| ------------------------ | -------------------------- |
+| `res.send('text')`       | Sends plain text           |
+| `res.json({})`           | Sends a JSON response      |
+| `res.status(404)`        | Sets the status code       |
+| `res.redirect('/other')` | Redirects to another route |
+```js
+ await client.connect();
+ const db = client.db(dbName);
+ await db.collection('departments').insertOne({ code });
+```
+- Connect to MongoDB  
+- 
+
 ---
 # Frontend of Express.js HTML Form and AJAX
 
@@ -56,4 +90,4 @@ AJAX: Asynchronous JavaScript and XML. A **technique** that use Javascript + HTM
 | **Backend Route for View** | The same route (e.g., `/echo`) handles rendering the HTML template and may also process the form submission if it's a POST.                                                                                        | One route (e.g., `/echo`) serves the initial HTML page, and separate API routes (e.g., `/echo/all`, `/echo/submit`) handle data fetching and updates.                                  |
 | **Frontend Code Needed**   | Simple HTML with possibly some inline scripts. No client-side JavaScript is required to handle form submission or data rendering.                                                                                  | Requires external JavaScript files (like `echoajaxclient.js`) to handle event listeners, AJAX requests, response handling, and DOM updates.                                            |
 | **Where the Logic Lives**  | Almost all application logic lives on the server. The client just sends requests and receives full pages.                                                                                                          | The logic is split: the server exposes API endpoints; the client (JavaScript) handles UI updates, state changes, and communication with the backend.                                   |
-## React.js
+
