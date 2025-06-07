@@ -118,3 +118,29 @@ This firmware contains just enough logic to:
 
 ---
 # Why We Need Both Kernel and Drivers?
+
+The OS kernel already has full access to the hardware. So why do we need device drivers? Couldn’t all hardware be handled directly by the kernel itself? In fact, why not just compile all drivers into the kernel?
+
+While the kernel is the core of the OS with unrestricted access to hardware, it delegates many hardware-specific tasks to device drivers. Device drivers are modular programs that know how to talk to specific devices like printers, graphics cards, or network adapters.
+
+Drivers can be: 
+- Kernel-mode drivers: Fast, but risky. Bugs can crash the system.
+- User-mode drivers: Safer, but slower. We must make frequent system calls to access hardware.
+
+Modern OSes use a _modular_ approach, keeping the kernel minimal and extensible, while allowing drivers to be updated or swapped without rebuilding the whole OS.
+
+**Answer the following questions:**
+
+1. Why aren’t all drivers just compiled permanently into the kernel?
+2. What are the trade-offs between running drivers in user mode vs kernel mode?
+3. What could go wrong if a buggy driver runs in kernel mode?
+4. How does this modular approach help both developers and end users?
+
+> **Hints**:
+> 
+> - Think about how often new hardware gets released.
+> - Who writes the drivers? The OS vendor or the hardware manufacturer?
+> - What happens if a graphics driver crashes while in kernel mode?
+> - What is the difference between performance and fault isolation?
+
+## Ans

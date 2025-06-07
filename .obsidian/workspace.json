@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Comp Eng/Processes.md",
+                "file": "Comp Eng/Introduction to OS.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Processes"
+              "title": "Introduction to OS"
             }
           }
         ]
@@ -197,7 +197,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 200
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -213,14 +213,14 @@
   },
   "active": "e3567a1cdcd5b2f1",
   "lastOpenFiles": [
-    "images/cc2_ex3.png.md",
+    "Comp Eng/Introduction to OS.md",
     "Comp Eng/Pset/Pset 1.md",
+    "Comp Eng/Processes.md",
+    "images/cc2_ex3.png.md",
     "pic/Pasted image 20250605162217.png",
     "pic/Pasted image 20250605162211.png",
     "pic/Parson Puzzle for Algorithm.md",
     "conflict-files-obsidian-git.md",
-    "Comp Eng/Processes.md",
-    "Comp Eng/Introduction to OS.md",
     "Comp Eng/OS Kernel Roles.md",
     "Comp Eng/Operating System as a Service.md",
     "Element of Software construct/Express.js.md",
