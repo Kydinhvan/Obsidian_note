@@ -1,6 +1,6 @@
 # Obsidian_note
 
-This is my personal Obsidian vault where I store notes and documents related to my learning journey. It includes content from various subjects, coding practice, and general technical knowledge.
+This is my personal Obsidian vault where I store notes and documents related to my Computer Science learning. It includes content from various subjects, coding practice, and general technical knowledge.
 
 ## Purpose
 
