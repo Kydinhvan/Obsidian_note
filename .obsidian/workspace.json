@@ -4,31 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "409db7e3db561bb7",
+        "id": "6fa2bd9e91d685c1",
         "type": "tabs",
         "children": [
           {
-            "id": "5c9856b00aeb9ec3",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Comp Eng/Processes.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Processes"
-            }
-          }
-        ]
-      },
-      {
-        "id": "dfe9b527e4227113",
-        "type": "tabs",
-        "children": [
-          {
-            "id": "b252162e528727d5",
+            "id": "f5687e07f0311167",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -39,6 +19,26 @@
               },
               "icon": "lucide-file",
               "title": "Pset 1"
+            }
+          }
+        ]
+      },
+      {
+        "id": "6a7851ebd2f4a5c4",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "63a7ca2b366222a3",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Docker.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Docker"
             }
           }
         ]
@@ -146,7 +146,7 @@
               "type": "tag",
               "state": {
                 "sortOrder": "frequency",
-                "useHierarchy": true,
+                "useHierarchy": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
@@ -197,29 +197,31 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "b252162e528727d5",
+  "active": "0ea587afda8c29de",
   "lastOpenFiles": [
-    "Comp Eng/Processes.md",
-    "Comp Eng/Pset/Pset 1.md",
-    "Comp Eng/Operating System as a Service.md",
-    "Comp Eng/Introduction to OS.md",
-    "Comp Eng/OS Kernel Roles.md",
-    "conflict-files-obsidian-git.md",
-    "pic/Pasted image 20250605162217.png",
-    "pic/Pasted image 20250605162211.png",
-    "pic/Parson Puzzle for Algorithm.md",
     "README.md",
+    "WQ/Pasted image 20250605203753.png",
     "WQ/Alpha.md",
-    "Pasted image 20250605212228.png",
-    "Pasted image 20250605212043.png",
-    "Pasted image 20250605211851.png",
-    "Pasted image 20250605211827.png",
-    "Pasted image 20250605211444.png",
-    "Pasted image 20250605210945.png",
-    "Pasted image 20250605210942.png",
-    "Pasted image 20250605210242.png",
+    "WQ/Pasted image 20250605210242.png",
+    "Comp Eng/OS Kernel Roles.md",
     "WQ",
+    "WQ/Pasted image 20250605212228.png",
+    "WQ/Pasted image 20250605212043.png",
+    "WQ/Pasted image 20250605211851.png",
+    "WQ/Pasted image 20250605211827.png",
+    "WQ/Pasted image 20250605211444.png",
+    "WQ/Pasted image 20250605210945.png",
+    "WQ/Pasted image 20250605210942.png",
+    "WQ/Pasted image 20250605205548.png",
+    "Comp Eng/Pset/Pset 1.md",
+    "Comp Eng/Processes.md",
     "Comp Eng/LAB/Lab 2 - Time of Check, Time of Use Attack.md",
+    "Comp Eng/LAB/Lab 1 Shell -CLI.md",
+    "Comp Eng/Introduction to OS.md",
+    "images/cc2_ex3.png.md",
+    "pic/Parson Puzzle for Algorithm.md",
+    "conflict-files-obsidian-git.md",
+    "Comp Eng/Operating System as a Service.md",
     "Element of Software construct/Express.js.md",
     "Element of Software construct/React.md",
     "Comp Eng/Pset",
@@ -228,7 +230,6 @@
     "Element of Software construct/Untitled.md",
     "LC/LeetCode Technique.md",
     "Database/Cohort Excercise/Week 2 Relational Algebra.md",
-    "images/cc2_ex3.png.md",
     "images",
     "Database/Cohort Excercise/Untitled.md",
     "Element of Software construct/Cohort Excercise/CH1/Exercise 2.md",
@@ -237,7 +238,6 @@
     "Database/SQL.md",
     "LC/SQL.md",
     "Element of Software construct/Node.js.md",
-    "Element of Software construct/Cohort Excercise/CH1/Exercise 1.md",
     "Element of Software construct/Cohort Excercise/CH1",
     "Comp Eng/LAB",
     "PDF NOTE/cse-01.pdf",
