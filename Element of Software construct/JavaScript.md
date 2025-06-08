@@ -157,3 +157,26 @@ This `setTimeout()` forces `promise` to reject as long as `t` expires or do noth
 `fn(...args).then(resolve).catch(reject)`: fn(...arg) is a function that take in any args
 - If successful, `resolve(...)` is called with its result. 
 - If it fails (throws error), `reject(...)` is called with that error.
+
+
+---
+# Technique
+
+## Generic
+### Create Array of functions
+```js
+const pool = Array(n).fill().map(evaluateNext);
+```
+`Array(3); // → [empty × 3]`
+`Array(3).fill(); // → [undefined, undefined, undefined]`
+`[undefined, undefined, undefined].map(evaluateNext); // → [Promise, Promise, Promise]`
+
+Result
+```js
+const pool = [
+  evaluateNext(), // starts worker 1
+  evaluateNext(), // starts worker 2
+  ...
+  evaluateNext()  // starts worker n
+];
+```

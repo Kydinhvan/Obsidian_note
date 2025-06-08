@@ -33,12 +33,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Docker.md",
+                "file": "Element of Software construct/JavaScript.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Docker"
+              "title": "JavaScript"
             }
           }
         ]
@@ -197,8 +197,9 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "0ea587afda8c29de",
+  "active": "53c937469eaa76f4",
   "lastOpenFiles": [
+    "Docker.md",
     "README.md",
     "WQ/Pasted image 20250605203753.png",
     "WQ/Alpha.md",
