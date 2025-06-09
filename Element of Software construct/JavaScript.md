@@ -163,7 +163,7 @@ This `setTimeout()` forces `promise` to reject as long as `t` expires or do noth
 # Technique
 
 ## Generic
-### Create Array of functions
+### Create Array of functions ^arrayoffunc
 ```js
 const pool = Array(n).fill().map(evaluateNext);
 ```
