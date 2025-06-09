@@ -79,3 +79,32 @@ Processes that are **ALREADY TERMINATED**, and memory as well as other resource
 >when process terminate os will deallocate its vm (virtual mem) but keeps its metadata [PCB](#^pcb) **until the parent proc calls wait/waitpid** 
 
 Too many zombie -> run out of pid (in 32 bit sys, we only have 32767 unique pids)
+
+
+--- 
+## C program
+``` c
+int main(int argc, char const *argv[])
+{
+   pid_t pid;
+
+   pid = fork();
+   printf("pid: %d\n", pid);
+
+   if (pid < 0) // error might give pid less than 0
+   {
+       fprintf(stderr, "Fork has failed. Exiting now");
+       return 1; // exit error
+   }
+   else if (pid == 0 // child pid = 0
+   {
+       execlp("/bin/ls", "ls", NULL);
+   }
+   else // parrent pid > 0
+   {
+       wait(NULL);
+       printf("Child has exited.\n");
+   }
+   return 0;
+}
+```

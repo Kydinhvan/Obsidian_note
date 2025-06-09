@@ -157,3 +157,5 @@ This `setTimeout()` forces `promise` to reject as long as `t` expires or do noth
 `fn(...args).then(resolve).catch(reject)`: fn(...arg) is a function that take in any args
 - If successful, `resolve(...)` is called with its result. 
 - If it fails (throws error), `reject(...)` is called with that error.
+
+
