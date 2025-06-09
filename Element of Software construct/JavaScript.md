@@ -127,7 +127,7 @@ promise
         console.log(error);
     });
 ```
-
+add function in array: [[JavaScript#^arrayoffunc|link]]
 ### `await`
 used inside `async` func to pause execution until a Promise settles (either resolves or rejects) 
 ```js
