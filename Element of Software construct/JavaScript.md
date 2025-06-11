@@ -159,8 +159,7 @@ This `setTimeout()` forces `promise` to reject as long as `t` expires or do noth
 - If it fails (throws error), `reject(...)` is called with that error.
 
 
-<<<<<<< HEAD
-=======
+
 ---
 # Technique
 
@@ -182,4 +181,29 @@ const pool = [
   evaluateNext()  // starts worker n
 ];
 ```
->>>>>>> origin/main
+
+--- 
+```js
+router.get('/all/withstaff/', async function(req, res, next) {
+    const depts = await deptmodel.all();  // Fetch all departments
+    const staffs = await staffmodel.all();  // Fetch all staff members
+    
+    // Create an array of departments, where each department includes its staff
+    const dept_staffs = depts.map(d => {
+        return {
+            code: d.code,  // Department code
+            staffs: staffs.filter(s => d.code === s.dept)  
+        }
+    });
+
+    res.send(`${JSON.stringify(dept_staffs)}`);  // Return the result as JSON
+});
+```
+**`depts.map(d => {...})`**:
+- **`depts`** is an array containing all the departments retrieved from `deptmodel.all()`.
+- **`map()`** is a JavaScript array method that creates a new array by applying a function to each element of the original array (`depts` in this case).
+- Inside the `map()` method, the argument `d` represents each **department** in the `depts` array. So, for each department, the function creates a new object containing the department code and the staff associated with that department.
+**`staffs.filter(s => d.code === s.dept)`**:
+- **`staffs`** is an array of all staff members, retrieved from `staffmodel.all()`.
+- **`filter()`** is another array method that creates a new array with all elements that pass a condition (provided by a function).
+- Inside `filter()`, the argument `s` represents each **staff member** in the `staffs` array.
