@@ -13,3 +13,134 @@ Concurrent processing involves multiple tasks making progress over time, but not
 ## The Producer Consumer Problem
 
 ###  Precedence Constraints
+
+--- 
+# The Critical Section Problem
+
+Each process may have a **segment** of instructions, called a `critical section` (CS)
+This is an important **feature** of the system is that **when one process is executing its critical section, no other process is allowed to execute its critical section**.
+
+This is because in the `critical section` the (asynchronous) processes may be:
+- Changing **common** variables,
+- Updating a **shared** table,
+- Writing to a **common** file, and so on.
+Hence we design a protocol that processes can use and sync.
+
+```NOTE
+Having CS in your program IS A PROBLEM as it requires complex synchronisation solutions to protect the CS
+```
+
+There are **two** basic forms of synchronization:
+- **Mutual exclusion**: No other processes can execute the critical section if there is already one process executing it.
+- **Condition synchronization**: Synchronize the execution of a process in a CS based on certain conditions instead.
+
+## Requirement for a CS Solution
+**Mutual exclusion** (mutex): No other processes can execute the critical section if there is already one process executing it (in the case of condition synchronization, this is adjusted accordingly)
+**Progress**: If there’s no process in the critical section, and some other processes wish to enter, we need to grant this permission and we cannot postpone the permission indefinitely.
+`**Bounded waiting**: If process A has requested to enter the CS, there exists a bound on the number of times other processes are allowed to enter the CS before A. This implies that CS is also of a finite length, it cannot loop forever and will exit after a finite number of instructions. It is a requirement that ensures **fairness** by guaranteeing that every process will eventually get a chance **to** enter its critical section (CS) after a finite number of other processes have done so -> ???`
+
+
+## Properties
+The requirements above result in the following property to a CS solution:
+- **Safety** property: no race condition
+- **Liveness** property: a program with proper CS solution will not hang forever (because technically no progress IS mutex).
+
+## Solution Template
+
+The solution template to a CS problem is as follows:
+
+``` C
+while(true){
+
+   [ENTRY SECTION]
+      CRITICAL SECTION ...
+      ...
+   [EXIT SECTION]
+      REMAINDER SECTION ...
+}
+```
+
+The protocol to approach a CS in general causes the process to:
+- **Request** for permission to enter the section (entry section).
+- **Execute** the critical section when the request is granted
+- **Exit** the CS solution
+
+The rest of the program that is not part of the critical section is called the **remainder** section.
+
+---
+# Software Mutex Algorithm
+
+
+---
+# Software Spinlocks and Mutex Locks
+
+We need hardware support for certain **special** atomic assembly-language instructions
+## Spinlocks
+A spinlock provides mutual exclusion. It is simply a variable that can be initialized, e.g `pthread_spinlock_t` implemented in C library and then obtained or released using two **standard** methods like `acquire()` and `release()`. An attempt to `acquire()` the lock causes a process or thread trying to acquire it to wait in a loop (“spin”) while repeatedly checking whether the lock is available.
+
+### Busy Waiting
+Busy waiting **wastes** CPU cycles – some other process might be able to use productively, and it affects efficiency tremendously when a CPU is shared among many processes. The spinning caller will utilize 100% CPU time just waiting: repeatedly checking if a spinlock is available.
+
+## Mutex Lock
+Does not cause busy wait
+
+---
+# Semaphores
+The semaphore can be seen as a **generalized mutex lock**. It provides **mutual exclusion**.
+
+It is implemented at the **kernel** level, meaning that its execution requires the calling process to change into the kernel mode via trap (SVC) semaphore instructions. Upon initialization, the semaphore **descriptor** is **inherited** across a `fork`.
+
+A parent process can **create** a semaphore, **open** it, and `fork`. The child process does not need to open the semaphore and can close the semaphore if the application is finished with it. Note that this means you need to **destroy** a semaphore (just like shared memory) after you’re completely done with it (no other processes or threads using it).
+
+This is a high-level **software** solution that relies on **synchronization hardware** (like those special atomic instructions), and is considered a more **robust** tool than mutex lock.
+
+Peterson’s solution and the hardware-assisted solutions all require busy waiting. However using semaphore, you can express a solution to the CS problem without busy waiting.
+
+## Definition 
+Semaphore is defined as:
+- An **integer variable** that is maintained in the kernel, initialized to a certain value that represents the number of **available** resources for the sharing processes
+- Is accessed only through two standard **atomic** System Call operations: `wait()` and `signal()`.
+
+---
+# Activity 4
+### Question 1
+
+1. For semaphore to work, acquire() and release() must be atomic i.e., they are **critical sections.**
+Wait a minute: we define semaphores to solve the CS problem, but their implementation now requires a solution to the CS problem! How do we escape from the **circular logic?**
+**One way to guarantee the atomicity of acquire/release without semaphore is use solutions with BUSY WAIT.**    
+What **software** and **hardware** solutions are available?
+    - Manually perform hardware interrupts
+	    **not a recommended practice**; it’s inefficient and unreliable in multiprocessor systems.
+    - Software Peterson's Algorithm
+	    **Peterson’s Algorithm** is a **software-only busy-wait** solution that works for 2 processes in a uniprocessor system. It ensures **mutual exclusion**, but has limitations (doesn’t scale well).
+    - Kernel Scheduler System Call
+	    is **not busy wait**—it's a context switch–based solution that **avoids** busy waiting, not enforces it.
+    - hardware getAndSet instruction
+	    **getAndSet** (or `test_and_set`, `compare_and_swap`) is a **hardware-supported atomic instruction**. It **guarantees atomicity** and is commonly used to implement **spinlocks**, mutexes, and semaphore internals.
+
+
+2. We can busy wait to solve the CS problem for semaphore acquire/release, but we use semaphore for other kinds of CS problems.
+What’s special about semaphore acquire/release as compared to busy wait?
+- Busy waiting can only be done for instructions that do not take up too much CPU cycles
+	True but missing explanation about code length
+- The instructions for acquire/release are short, so a busy waiting solution for them is acceptable
+	Yes, busy waiting wastes CPU time completely, so it is only acceptable if code is short
+- Nothing special about them
+- The instructions for acquire/release are longer than general processes instructions, so a busy waiting solution for them is acceptable
+
+2. Assume we have a shared buffer of size N, and we allow multiple producers and consumers. Given skeleton producer code (no synchronization):
+```c
+public void produce(Work item) {    // is “in” a shared variable in this problem? 
+	buffer[in] = item;    
+	in = (in + 1) % N; }
+```
+
+> **What activities require synchronization?**
+
+**Options**:
+- A. Ensuring mutual exclusion in writing to or reading from the shared buffer
+	- Yes `in` is a **shared index**. If two producers run concurrently without locking, they could both try to write to `buffer[in]`, leading to a **race condition**.
+- B. Ensure there's at least one empty buffer slot for producers before writing
+	- Producers must check there is **space** in the buffer. If the buffer is full, they must **wait**. This is typically done using a **`space` semaphore**.
+- C. Ensure there's at least one filled buffer slot for consumers before consuming
+	- Consumers must check there is **at least one item** in the buffer. If the buffer is empty, they must **wait**. This is done using a **`chars` semaphore**.
