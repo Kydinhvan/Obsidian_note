@@ -12,6 +12,17 @@ Concurrent processing involves multiple tasks making progress over time, but not
 
 ## The Producer Consumer Problem
 
+The **Producer-Consumer** problem is a classic example of a **multi-threading synchronization** issue.
+### Scenario:
+- A **Producer** creates data and puts it into a **shared buffer**.
+- A **Consumer** takes data from the buffer and processes it. (creating an **empty slot**)
+- The buffer has **limited capacity** (say, `N` slots), so the producer must wait if the buffer is full.
+- Similarly, the consumer must wait if the buffer is empty.
+
+This leads to two key challenges:
+1. **Mutual Exclusion**: Only one thread can access the buffer at a time to avoid data inconsistency.
+2. **Synchronization**: The producer and consumer must communicate properly (e.g., "Wait until there's space" or "Wait until there's something to consume").
+
 ###  Precedence Constraints
 
 --- 
@@ -105,22 +116,24 @@ Semaphore is defined as:
 # Activity 4
 ### Question 1
 
-1. For semaphore to work, acquire() and release() must be atomic i.e., they are **critical sections.**
+For semaphore to work, acquire() and release() must be atomic i.e., they are **critical sections.**
 Wait a minute: we define semaphores to solve the CS problem, but their implementation now requires a solution to the CS problem! How do we escape from the **circular logic?**
 **One way to guarantee the atomicity of acquire/release without semaphore is use solutions with BUSY WAIT.**    
 What **software** and **hardware** solutions are available?
-    - Manually perform hardware interrupts
+#### Ans
+- Manually perform hardware interrupts
 	    **not a recommended practice**; it’s inefficient and unreliable in multiprocessor systems.
-    - Software Peterson's Algorithm
+- Software Peterson's Algorithm
 	    **Peterson’s Algorithm** is a **software-only busy-wait** solution that works for 2 processes in a uniprocessor system. It ensures **mutual exclusion**, but has limitations (doesn’t scale well).
-    - Kernel Scheduler System Call
+- Kernel Scheduler System Call
 	    is **not busy wait**—it's a context switch–based solution that **avoids** busy waiting, not enforces it.
-    - hardware getAndSet instruction
+- Hardware getAndSet instruction
 	    **getAndSet** (or `test_and_set`, `compare_and_swap`) is a **hardware-supported atomic instruction**. It **guarantees atomicity** and is commonly used to implement **spinlocks**, mutexes, and semaphore internals.
 
-
-2. We can busy wait to solve the CS problem for semaphore acquire/release, but we use semaphore for other kinds of CS problems.
+### Question 2
+We can busy wait to solve the CS problem for semaphore acquire/release, but we use semaphore for other kinds of CS problems.
 What’s special about semaphore acquire/release as compared to busy wait?
+#### Ans
 - Busy waiting can only be done for instructions that do not take up too much CPU cycles
 	True but missing explanation about code length
 - The instructions for acquire/release are short, so a busy waiting solution for them is acceptable
@@ -128,7 +141,8 @@ What’s special about semaphore acquire/release as compared to busy wait?
 - Nothing special about them
 - The instructions for acquire/release are longer than general processes instructions, so a busy waiting solution for them is acceptable
 
-2. Assume we have a shared buffer of size N, and we allow multiple producers and consumers. Given skeleton producer code (no synchronization):
+### Question 3
+Assume we have a shared buffer of size N, and we allow multiple producers and consumers. Given skeleton producer code (no synchronization):
 ```c
 public void produce(Work item) {    // is “in” a shared variable in this problem? 
 	buffer[in] = item;    
@@ -136,7 +150,7 @@ public void produce(Work item) {    // is “in” a shared variable in this pro
 ```
 
 > **What activities require synchronization?**
-
+#### Ans
 **Options**:
 - A. Ensuring mutual exclusion in writing to or reading from the shared buffer
 	- Yes `in` is a **shared index**. If two producers run concurrently without locking, they could both try to write to `buffer[in]`, leading to a **race condition**.
@@ -144,3 +158,20 @@ public void produce(Work item) {    // is “in” a shared variable in this pro
 	- Producers must check there is **space** in the buffer. If the buffer is full, they must **wait**. This is typically done using a **`space` semaphore**.
 - C. Ensure there's at least one filled buffer slot for consumers before consuming
 	- Consumers must check there is **at least one item** in the buffer. If the buffer is empty, they must **wait**. This is done using a **`chars` semaphore**.
+### Question 4
+Consider the producer-consumer problem.
+- With semaphore, when consumer creates an empty slot, you call the **release()** method
+- With Java synchronized method, when consumer creates an empty slot, you can call the **notify()** method 
+At first glance, **release()** and **notify()** look similar. But they also have a subtle **difference**. You can begin by thinking when customer creates an empty slot **_without_** any producers already waiting for the slot,
+- What will be the effect of release()?
+- What will be the effect of notify()?
+#### Ans
+When consumer creates an empty slot by removing something, they call `release()` with semaphore method:
+- A semaphore is an integer counter. When .release() is called, the semaphore (counter increase) no matter if a producer thread is waiting or not.
+- Later, when a producer calls `.acquire()`, it won't block — because the counter is already positive.
+- The signal (available slot) is remembered by the semaphore. The counter acts as state.
+
+When consumer creates an empty slot by removing something, they call `notify()` with java sync method:
+- A thread can call `.notify()` to wake one waiting thread. This changes the thread state from blocked to runnable. If there is no thread waiting, nothing happen (as nothing wake up) when .notify() called
+- Later, when a producer calls `.wait()` it has to wait for the next .notify(), because it missed the earlier signal
+- lost signal when no producer waiting
