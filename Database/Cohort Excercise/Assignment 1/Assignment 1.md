@@ -14,8 +14,7 @@ Block(date, hr_block)
 Book(pid, fid, date, hr_block)
 ```
 
-#### Question 3
-##### Part 1
+#### Question 3 Part 1
 ```SQL
 CREATE TABLE Player (
     pid INT PRIMARY KEY
@@ -40,7 +39,7 @@ CREATE TABLE Book (
 );
 ```
 
-##### Part 2 SQL Query – Players Who Booked Once and Never Re-booked
+#### Question 3 Part 2 SQL Query – Players Who Booked Once and Never Re-booked
 ```sql
 SELECT pid FROM Book
 GROUP BY pid
