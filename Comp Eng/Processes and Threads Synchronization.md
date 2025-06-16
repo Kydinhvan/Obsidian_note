@@ -35,10 +35,21 @@ This is because in the `critical section` the (asynchronous) processes may be:
 - Changing **common** variables,
 - Updating a **shared** table,
 - Writing to a **common** file, and so on.
+### Why is this a problem?
+By default, processes are isolated and threads are independent. We need them to coordinate -> need more infrastructure to support and protect this CS (critical section)
+
+## Atomicity
+Still can be scheduled out but make sure no other thread can access the CS
+### Achieved by
+1. 1 clk cycle instruction in single CPU system -> LD/ST is atomic 
+2. protect memory region
+
+---
+# Solution
 Hence we design a protocol that processes can use and sync.
 
 ```NOTE
-Having CS in your program IS A PROBLEM as it requires complex synchronisation solutions to protect the CS
+Having CS in your program IS A PROBLEM as it requires complex synchronisation solutions to protect the CS -> More Over
 ```
 
 There are **two** basic forms of synchronization:
@@ -48,13 +59,8 @@ There are **two** basic forms of synchronization:
 ## Requirement for a CS Solution
 **Mutual exclusion** (mutex): No other processes can execute the critical section if there is already one process executing it (in the case of condition synchronization, this is adjusted accordingly)
 **Progress**: If there’s no process in the critical section, and some other processes wish to enter, we need to grant this permission and we cannot postpone the permission indefinitely.
-`**Bounded waiting**: If process A has requested to enter the CS, there exists a bound on the number of times other processes are allowed to enter the CS before A. This implies that CS is also of a finite length, it cannot loop forever and will exit after a finite number of instructions. It is a requirement that ensures **fairness** by guaranteeing that every process will eventually get a chance **to** enter its critical section (CS) after a finite number of other processes have done so -> ???`
-
-
-## Properties
-The requirements above result in the following property to a CS solution:
-- **Safety** property: no race condition
-- **Liveness** property: a program with proper CS solution will not hang forever (because technically no progress IS mutex).
+**Bounded waiting**: If process A has requested to enter the CS, there exists a bound on the number of times other processes are allowed to enter the CS before A. 
+	In simpler terms, it means that **no process should have to wait indefinitely** to enter its critical section. The waiting time for a process is **finite** and is bounded by a constant number of steps or actions.
 
 ## Solution Template
 
@@ -75,24 +81,56 @@ The protocol to approach a CS in general causes the process to:
 - **Request** for permission to enter the section (entry section).
 - **Execute** the critical section when the request is granted
 - **Exit** the CS solution
+### Properties
+Mutex, Progress and bounded waiting **requirements of a CS solution result in** **property** to a CS solution:
+- **Safety** property: no race condition
+- **Liveness** property: a program with proper CS solution will not hang forever (because technically no progress IS mutex).
 
 The rest of the program that is not part of the critical section is called the **remainder** section.
 
 ---
-# Software Mutex Algorithm
+# Known Solutions to protect CS
 
+## Peterson's Solution: Software Mutex Algorithm
+Condition: Single core, **atomic** read and write -> supported by hardware
+Sync only 2 processes
+
+```c
+// Process j: flip i and j
+// Process i 
+do{
+   flag[i] = true; // GLOBAL Var
+   turn = j; // GLOBAL Var
+   while (flag[j] && turn == j); // this is a while LINE
+   // CRITICAL SECTION HERE
+   // ...
+   flag[i] = false;
+   // REMAINDER SECTION HERE
+   // ...
+}while(true)
+```
+
+### Proof of Correctness
+mutex proof: 2 scenarios needed
+scenario 1: both want to enter:
+	Pj -> flag[j] = True, turn = j
+	Pi -> flag[i] = True, turn = i
+Since turn can only be i or j, mutex is guaranteed
+Pi will enter CS while Pj **busywaits** -> Who go in first is determined by turn
+
+scenario 2: Pi in CS -> 
 
 ---
-# Software Spinlocks and Mutex Locks
+## Software Spinlocks and Mutex Locks
 
 We need hardware support for certain **special** atomic assembly-language instructions
-## Spinlocks
+### Spinlocks
 A spinlock provides mutual exclusion. It is simply a variable that can be initialized, e.g `pthread_spinlock_t` implemented in C library and then obtained or released using two **standard** methods like `acquire()` and `release()`. An attempt to `acquire()` the lock causes a process or thread trying to acquire it to wait in a loop (“spin”) while repeatedly checking whether the lock is available.
 
-### Busy Waiting
+#### Busy Waiting
 Busy waiting **wastes** CPU cycles – some other process might be able to use productively, and it affects efficiency tremendously when a CPU is shared among many processes. The spinning caller will utilize 100% CPU time just waiting: repeatedly checking if a spinlock is available.
 
-## Mutex Lock
+### Mutex Lock
 Does not cause busy wait
 
 ---
