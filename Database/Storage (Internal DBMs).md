@@ -9,11 +9,11 @@ The internal of the database manage systems.
 - how queries are executed and how to optimize them
 
 ### Check list
-- [ ] Explain the internal structure a hard disk
-- [ ] Compute the estimated cost for a data operation
+- [x] Explain the internal structure a hard disk
+- [x] Compute the estimated cost for a data operation
 - [ ] Explain the roles and functionality of a disk manager
 - [ ] Explain the roles and functionality of a buffer pool
-- [ ] Describe the LRU and Clock Replacement Policy
+- [x] Describe the LRU and Clock Replacement Policy
 
 # Hard disk
 ## Internal structure
@@ -121,7 +121,7 @@ The goal of the Clock policy is to find a victim frame to evict:
 	•	Index Files - May contain records or point to records in other files
 
 ## Heap Files
-•	Collection of records in no particular order
+•	Collection of records in **no particular order**
 	•	Not to be confused with “heap” data structure
 •	As file shrinks/grows, pages (de)allocated
 •	To support record level operations, we must
@@ -173,4 +173,88 @@ Annotation:
 | **Insert a record**  | $t_s + r + 2 * t_{tf}$ | $t_s + r + 2 * t_{tf}$ |
 | **Lookup a record**  | $t_s + t_{tf} * D/2$   | $(t_s + t_{tf}) * D/2$ |
 | **Scan all records** | $t_s + t_{tf} * D$     | $(t_s + t_{tf}) * D$   |
-$t_s + r + 2 * t_{tf}$ -> Insert means retrieving, changing data and then send it back
+>Insert a record $t_s + r + 2 * t_{tf}$ -> Insert means retrieving, changing data and then send it back
+
+
+>Lookup a record $t_s + t_{tf} * D/2$  -> transfer $*$ 2 to see if it is correct
+
+---
+# Index
+
+>[!note] Think index from hash
+- Allow **faster data retrieval**.
+- Implemented as **data structures** mapping keys to location
+
+### Formal Definition
+Function: `f(key) → location`
+
+Operations:
+- `insert(key, recordID)`
+- `lookup(key) → recordID`
+- `lookup(keyLow, keyHigh) → recordIDs`
+
+## Hash table 
+```python
+d = {}
+d['a'] = 1234
+'a' in d  # True
+```
+
+### Problems with Hashing
+#### Problem 1: Hash Function Quality
+- **Bad**: Simple modulo-based (e.g., `H(x) = x % 2`)
+- **Good**: Cryptographic (SHA-1, etc.) – but slow. | but we want it to be fast 
+
+#### Problem 2: Collisions
+- **Open Hashing (Separate Chaining)**:
+    - Use **linked lists** to store multiple items at the same slot.
+- **Closed Hashing (Open Addressing)**:
+    - Try **next slot** (linear probing) or use **Cuckoo Hashing**
+
+#### Problem 3: Unknown number of elements
+- **Chained Hashing**: Easy to expand (lists).
+- **Linear Probing**: Go to next empty slot.
+- **Cuckoo Hashing**:
+    - Two hash tables and functions.   
+    - If full, **evict another value** and try again.
+
+--- 
+### Cuckoo Hashing
+- multiple table, multiple hash function
+- To insert, check every table for free slot to insert
+- if no free slot
+	- pick 1 key and rehash with diff hash function to find new pos
+	- insert to recently vacated one
+
+- Pro: look up cost: O(1) as you know where to check, just N spots at most
+- Cons: might bounce values, hence stuck in infinite loop 0 -> new hash func or add more table
+
+--- 
+### Bucket Hashing
+
+---
+### B+ Tree
+- A **multi-way** balanced search tree.
+- **All leaf nodes at same level** (perfectly balanced).
+- **Only leaf nodes** contain actual data.
+
+property: d, each node list is from d to d $*$ 2
+#### Delete
+- Case 1:
+![[Pasted image 20250618104613.png|500]]
+- Case 2:
+![[Pasted image 20250618104706.png|500]]
+![[Pasted image 20250618104735.png|500]]
+- Case 3:
+![[Pasted image 20250618104859.png|500]]
+![[Pasted image 20250618104918.png|500]]
+
+- Pro: search cost: O(logN) similar to binary search tree (BST)
+- Cons: might bounce values, hence stuck in infinite loop 0 -> new hash func or add more table
+
+### Clustered vs. Unclustered Index
+- **Clustered B+ Tree**:
+    - Data in heap file is sorted by index key.
+    - Fast sequential access.
+- **Unclustered**:
+    - Index points to scattered records.
