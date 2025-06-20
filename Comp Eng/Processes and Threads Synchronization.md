@@ -111,14 +111,31 @@ do{
 ```
 
 ### Proof of Correctness
-mutex proof: 2 scenarios needed
+#### mutex proof: 
+2 scenarios needed
 scenario 1: both want to enter:
 	Pj -> flag[j] = True, turn = j
 	Pi -> flag[i] = True, turn = i
 Since turn can only be i or j, mutex is guaranteed
 Pi will enter CS while Pj **busywaits** -> Who go in first is determined by turn
 
-scenario 2: Pi in CS -> 
+scenario 2: Pi in CS and Pj want to enter?
+
+-> reordered question
+
+#### Bounded Waiting proof: 
+>[!note] Proof that a process in CS loop back and want to enter CS again but its blocked because it is the other Process turn
+ 
+Scenario: Pi is in CS, Pj want to enter and it is blocked
+Pi exists the CS then scheduled to loop again -> want to enter again while Pj is still waiting and not scheduled
+`waiting vs scheduled ?`
+
+the moment Pj resumes it now can enter CS. -> Pj waits at most one CS length as 
+
+---
+## Synchronisation Hardware
+Atomic Instructions (doesn't mean 1 clk cycle only)
+No other CPU/core can interrupt or observe a partial update
 
 ---
 ## Software Spinlocks and Mutex Locks
