@@ -1,0 +1,1 @@
+an algorithm is called deterministic if it behaves exactly the same on different runs, for the same input 𝐼.

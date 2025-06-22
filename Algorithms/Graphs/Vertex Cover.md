@@ -1,0 +1,1 @@
+A vertex cover of a simple undirected [[Graph]] 𝐺 is a subset of vertices such that every edge of 𝐺 is incident to at least one vertex in this subset.

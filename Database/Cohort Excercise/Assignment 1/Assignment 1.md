@@ -1,6 +1,6 @@
 #### Question 1
 <div style= "text-align: center;">
-<img src ="Pasted image 20250613214118.png" style ="width: 80%; height: auto;"/>
+<img src ="Pasted image 20250621131708.png" style ="width: 70%; height: auto;"/>
 </div>
 
 #### Question 2
@@ -9,9 +9,9 @@ Player(pid)
 
 Facility(fid)
 
-Block(date, hr_block)
+Block(bdate, bhour)
 
-Book(pid, fid, date, hr_block)
+Book(pid, fid, bdate, bhour)
 ```
 
 #### Question 3 Part 1
@@ -23,22 +23,27 @@ CREATE TABLE Facility (
     fid INT PRIMARY KEY
 );
 CREATE TABLE Block (
-    date DATE,
-    hr_block INT,
-    PRIMARY KEY (date, hr_block)
+    bdate DATE,
+    bhour INT,
+    PRIMARY KEY (bdate, bhour)
 );
 CREATE TABLE Book (
     pid INT,
     fid INT,
-    date DATE,
-    hr_block INT,
-    PRIMARY KEY (fid, date, hr_block),
+    bdate DATE,
+    bhour INT,
+    PRIMARY KEY (fid, bdate, bhour),
     FOREIGN KEY (pid) REFERENCES Player(pid),
     FOREIGN KEY (fid) REFERENCES Facility(fid),
-    FOREIGN KEY (date, hr_block) REFERENCES Block(date, hr_block)
+    FOREIGN KEY (bdate, bhour) REFERENCES Block(bdate, bhour)
 );
 ```
-
+`Book` relation key and constraint:
+- **Primary key**: `(fid, bdate, bhour)` → only **one booking per facility per time slot** is allowed.
+- **Foreign keys** - referencing other relation keys. Hence you can only insert a `pid` into `Book` if that `pid` already exists in `Player`:
+    - `pid → Player(pid)` → ensures player exists
+    - `fid → Facility(fid)` → ensures facility exists.
+    - `(bdate, bhour) → Block(bdate, bhour)` → ensures the booked time slot is valid.
 #### Question 3 Part 2 SQL Query – Players Who Booked Once and Never Re-booked
 ```sql
 SELECT pid FROM Book

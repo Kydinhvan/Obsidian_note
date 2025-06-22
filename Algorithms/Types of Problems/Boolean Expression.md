@@ -1,0 +1,1 @@
+an expression consisting of [[Boolean Variable]], operators $\land$, $\lor$, $\lnot$, and a parenthesis $()$    

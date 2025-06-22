@@ -1,0 +1,1 @@
+Runs tasks one by one, waiting for the previous job to be completed

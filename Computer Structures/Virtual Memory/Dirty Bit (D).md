@@ -1,0 +1,1 @@
+A page is **DIRTY** if it has been loaded into the RAM from the Disk. Therefore we must put the content into the swap space before overwritting the data.

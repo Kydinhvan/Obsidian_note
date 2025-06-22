@@ -1,0 +1,1 @@
+A conjunction is a joining of [[Boolean Expression]] by using an **AND** $\land$ operator

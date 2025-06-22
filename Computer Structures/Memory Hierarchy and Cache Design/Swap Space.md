@@ -1,0 +1,1 @@
+a designated area on a hard drive or other storage device that the operating system uses as virtual memory when the physical RAM is fully occupied.

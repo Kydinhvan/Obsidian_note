@@ -1,0 +1,1 @@
+Evidence that shows whether the answer to a [[Verification Algorithm]] is a "yes" or a "no" without explicitly saying so

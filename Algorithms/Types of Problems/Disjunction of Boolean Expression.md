@@ -1,0 +1,1 @@
+The joining of [[Boolean Expression]] together into a single [[Boolean Expression]] by using the **OR** $\lor$ operator

@@ -1,0 +1,1 @@
+An algorithm is called non-deterministic if it is possible to have different behaviors on different runs, even for the same input 𝐼.
