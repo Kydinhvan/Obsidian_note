@@ -152,11 +152,14 @@ Does not cause busy wait
 
 ---
 # Semaphores
+
+a data structure, an int that is used to control access to common resource
 The semaphore can be seen as a **generalized mutex lock**. It provides **mutual exclusion**.
 
 It is implemented at the **kernel** level, meaning that its execution requires the calling process to change into the kernel mode via trap (SVC) semaphore instructions. Upon initialization, the semaphore **descriptor** is **inherited** across a `fork`.
 
-A parent process can **create** a semaphore, **open** it, and `fork`. The child process does not need to open the semaphore and can close the semaphore if the application is finished with it. Note that this means you need to **destroy** a semaphore (just like shared memory) after you’re completely done with it (no other processes or threads using it).
+A parent process can **create** a semaphore, **open** it, and `fork`. The child process does not open the semaphore and can close the semaphore if the application is finished with it. (semaphore is inherited, child have semaphore pointers to an instance in kernel lvl) 
+Note that this means you need to **destroy** a semaphore (just like shared memory) after you’re completely done with it (no other processes or threads using it).
 
 This is a high-level **software** solution that relies on **synchronization hardware** (like those special atomic instructions), and is considered a more **robust** tool than mutex lock.
 
@@ -166,6 +169,110 @@ Peterson’s solution and the hardware-assisted solutions all require busy wait
 Semaphore is defined as:
 - An **integer variable** that is maintained in the kernel, initialized to a certain value that represents the number of **available** resources for the sharing processes
 - Is accessed only through two standard **atomic** System Call operations: `wait()` and `signal()`.
+
+### Precedent Constraint
+
+
+## Implementation
+- Binary: init as 1
+- Counting: init as >1
+wait and signal are CS 
+shorter than CS -> it is ok to busy wait
+
+### Wait()
+```c
+wait(semaphore *S)
+{  S->value--;
+   if (S->value < 0)
+   {
+       add this process to S->list; // this will call block()
+   }
+}
+```
+is a busy wait that is implemented as [[Processes and Threads Synchronization#Spinlocks|spinlock]] in kernel using hardware
+Processes in queue to call wait
+
+### Signal 
+```c
+signal(semaphore *S)
+{
+   S->value++;
+   if (S->value <= 0)
+   {
+       remove a process P from S->list;
+       wakeup(P);
+   }
+}
+```
+
+### Semaphore in MPC
+```c
+semaphore chars = 0; // To sync a prod and a consumer 
+semaphore space = N; // to ensure precedence constraint
+semaphore mutex_p = 1; // sync with producers
+semaphore mutex_c = 1; // sync with consumers
+```
+
+#### Producer prog
+```c
+void send (char c){
+   wait(space); // check for space
+   wait(mutex_p); // check if other resource is ...
+
+// this is the CS
+   buf[in] = c; 
+   in = (in + 1)%N;
+// end of CS
+
+   signal(mutex_p); // done, allow other process to write
+   signal(chars); // allow consumer to read
+}
+```
+
+#### Consumer prog
+```c
+char rcv(){
+   char c;
+   wait(chars); // check for chars for what
+   wait(mutex_c); // 
+
+   c = buf[out];
+   out = (out+1)%N;
+
+   signal(mutex_c);
+   signal(space);
+}
+```
+
+
+---
+# Condition Variables
+
+a sync primitive that allows processes to sleep and wait for a certain condition to be true
+
+>[!Note] Thread 1 must go before Thread 2
+
+```c
+pthread_mutex_lock(&mutex);
+// CRITICAL SECTION
+// ...
+cond_x = true;
+pthread_cond_signal(&p_cond_x);
+pthread_mutex_unlock(&mutex);
+```
+```c
+pthread_mutex_lock(&mutex);
+while (cond_x == false){
+   pthread_cond_wait(&p_cond_x, &mutex);  // yields mutex, sleeping
+}
+// CRITICAL SECTION, can only be executed iff cond_x == true
+// ...
+pthread_mutex_unlock(&mutex);
+```
+Process 2 should **not** proceed to its CS if `cond_x` is `false` in this example.
+Process 2 get signal -> get woken up and check condition, during this time the condition true false might hv changed by other processes. -> **recheck condition using while loop**
+
+
 
 ---
 # Activity 4

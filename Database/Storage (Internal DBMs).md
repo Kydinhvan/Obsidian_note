@@ -238,7 +238,16 @@ d['a'] = 1234
 - **All leaf nodes at same level** (perfectly balanced).
 - **Only leaf nodes** contain actual data.
 
-property: d, each node list is from d to d $*$ 2
+#### Why b+?
+- Multi way branching
+	nodes can have many children
+- Two type of nodes
+	Internal node contain only keys for navigation
+	Leaf node contain pointer to data or actual data
+- Sequential access
+	Leaf node connected in a linked list , range queries and sequential scan extremely efficient
+
+property: d, each node list is from d to d $*$ 2 (only apply to non-root node)
 #### Delete
 - Case 1:
 ![[Pasted image 20250618104613.png|500]]
@@ -258,3 +267,4 @@ property: d, each node list is from d to d $*$ 2
     - Fast sequential access.
 - **Unclustered**:
     - Index points to scattered records.
+
