@@ -19,7 +19,6 @@ Ask:
 >“How can I break this?”
 
 ---
-## Two Pointer
 # Sliding Window 
 
 ```python
@@ -60,7 +59,21 @@ def maxConsecutiveOnes(nums):
 	return max_len	
 ```
 
+# 2 Pointer
 ## Palindrome
 ```python
-
+class Solution(object):
+    def isPalindrome(self, s):
+        for char in s:
+            if not char.isalnum():
+                s = s.replace(char,"")
+        s = s.lower()
+        leftP = 0
+        rightP = len(s)-1
+        while leftP<rightP:
+            if s[leftP] != s[rightP]:
+                return False
+            leftP +=1
+            rightP-=1
+        return True
 ```

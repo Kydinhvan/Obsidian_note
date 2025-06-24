@@ -273,7 +273,6 @@ Process 2 should **not** proceed to its CS if `cond_x` is `false` in this 
 Process 2 get signal -> get woken up and check condition, during this time the condition true false might hv changed by other processes. -> **recheck condition using while loop**
 
 
-
 ---
 # Activity 4
 ### Question 1
