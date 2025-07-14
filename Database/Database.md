@@ -11,10 +11,12 @@
 	- **LAB1**
 	- [[SimpleDB Architecture]]
 - [[Normalisation]]
+- [[Queries Optimization]]
 - [[Queries]]
 - [[Relational Algebra]]
 - [[Relational Model]]
 - [[SQL]]
 - [[Storage (Internal DBMs)]]
+- [[Transaction]]
 
 %% End Waypoint %%

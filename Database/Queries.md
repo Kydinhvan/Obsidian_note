@@ -95,3 +95,5 @@ $Scan: B(R) + B(S) (average case)$
 
 ---
 ## Basic Hash Join
+
+

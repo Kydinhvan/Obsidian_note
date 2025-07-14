@@ -9,6 +9,6 @@
 	- [[Java - Lesson 1 Quiz]]
 	- [[Java - Lesson 4 Quiz]]
 	- [[Pset 3A]]
-	- [[Comp Eng/Synchronization in Java]]
+	- [[Synchronization in Java]]
 
 %% End Waypoint %%
