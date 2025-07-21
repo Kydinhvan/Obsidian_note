@@ -6,6 +6,7 @@
 - [[Database]]
 - [[ER Model]]
 - [[Functional Dependencies]]
+- [[Hadoop Distributed File System]]
 - [[Intro to Database]]
 - **LAB**
 	- **LAB1**
