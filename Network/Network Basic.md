@@ -142,8 +142,77 @@ Refers to **unexpected or unplanned outcomes** that arise when multiple componen
 - The high-priority task is blocked **waiting** for the low-priority one to release the resource.
 - Meanwhile, a **medium-priority task** (which doesn’t need the resource) preempts the low-priority task, delaying it from finishing and releasing the lock.
 
-
 	The OS scheduler, locking mechanism, and priority levels all **work independently**.
 	Their interaction results in **a behavior (high-priority task being delayed)** that violates the intended system design.
 
+### Problem
+N modules on the internet, everything can interact w other $N^2$. Each of these might lead to emergent behavior. 
+-> *Solution to this is layering*
+- **Reduces complexity**: Each layer focuses on a specific function.
+- **Minimizes interaction scope**: Layers interact only with adjacent layers.
+- **Enhances flexibility**: Each layer can evolve independently.
 
+# Open Systems Interconnection (OSI)
+
+*The 5-layer internet protocol stack comprised on **application layer**, **transport layer**, **network layer**, **link layer**, and **physical layer**. *
+
+Real-Life Analogy: Airline Travel
+- Application Layer: Your travel plan and ticket
+- Transport Layer: Baggage handling
+- Network Layer: Route planning (air traffic)
+- Link Layer: Gate-to-gate transport
+- Physical Layer: Actual plane on the runway
+## Application Layer
+
+This is implemented as **software**, typically the user application(s) needing to communicate via the internet itself. Provides **services to user applications**, enabling things like web browsing, email, file sharing
+
+Example protocols: HTTP/HTTPS (Web), SMTP (Email), DNS (Domain), SSH (Secure login)
+**Implements APIs** that interact with transport protocols
+
+>An application layer packet of information is called a **message**.
+
+## Transport Layer
+***Transfers application messages** between processes across the network*
+
+**Key protocols**:
+- **TCP**: Reliable, connection-oriented (used for web browsing, email)
+	- Connection setup/teardown
+	- Flow control
+	- Congestion control
+	- Packet reordering
+- **UDP**: Unreliable, connectionless (used for video streaming, DNS)
+	- Does not guarantee delivery or order of packets, making it faster but less reliable
+
+>A transport layer packet of information is called a **segment**
+
+## Network Layer
+*Handles **routing and addressing** of packets across multiple networks*
+Operates over IP addresses, **not ports or MAC addresses**.
+
+**Key protocols and tools**:
+- IP (Internet Protocol): Routing, addressing packets
+- ICMP: Diagnostics (used in tools like ping and traceroute) within IP networks
+- OSPF: Optimal routing paths within autonomous systems
+- BGP: Facilitates routing between these sys
+
+>A network layer packet of information is called a **datagram**.
+
+## Link Layer
+*Transfers data between **neighboring nodes** on the same link.*
+
+Examples:
+- Ethernet (wired LAN)
+- Wi-Fi (802.11)
+- ARP (maps IP to MAC address)
+
+>A link layer packet of information is called a **frame**.
+
+## Physical Layer
+*Physically transmits raw bits over a medium*
+
+Examples:
+- Ethernet cables
+- Fiber optics
+- Radio waves (Wi-Fi, Bluetooth)
+
+>A physical layer packet of information is called a **frame**.
