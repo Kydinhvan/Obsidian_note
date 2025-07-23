@@ -1,9 +1,9 @@
 [
   "dataview",
   "obsidian-minimal-settings",
-  "obsidian-pandoc",
-  "obsidian-image-toolkit",
   "markdown-table-editor",
   "obsidian-git",
-  "waypoint"
+  "waypoint",
+  "note-refactor-obsidian",
+  "templater-obsidian"
 ]
