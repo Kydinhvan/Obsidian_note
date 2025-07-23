@@ -3,7 +3,7 @@ Link: [[Express.js#`req` the request object|res object]]
 ### Concept
 
 The `index.js` file in an Express app is the **main entry point** of the backend server. It's responsible for:
-- Setting up the Express application    
+- Setting up the Express application `app.use(express.json())` Attaches JSON from HTTP parsed into JS obj to `req.body`   
 - Connecting middleware (like JSON parsing or CORS)
 - Defining routes (e.g., `/login`, `/register`, `/hotels`)
 - Handling errors
