@@ -34,3 +34,18 @@ To reduce risk and balance load:
 ### Limits:
 - Max 1 replica per DataNode.
 - Max 2 per rack.
+
+# Erasure Coding
+
+### Traditional Replication (e.g., RF=3):
+- Each block is stored **3 times**.
+- Storage overhead = **200%** (i.e., 3× the space).
+-> Erasure
+
+Erasure Coding splits your data into:
+- **k** data blocks
+- **m** parity blocks
+
+The combination of **k + m blocks** forms a **codeword**.
+> Even if **up to m blocks are lost**, the original data can still be **reconstructed**
+This is similar to what RAID 6 or Reed-Solomon codes do in storage systems.

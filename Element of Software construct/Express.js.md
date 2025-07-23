@@ -31,12 +31,29 @@ router.get('/add/:code', async (req, res) => {
 | `req.method`  | GET, POST, etc.                               |
 | `req.url`     | The full URL path                             |
 ### `res`: the response object
-| Method                   | Description                |
-| ------------------------ | -------------------------- |
-| `res.send('text')`       | Sends plain text           |
-| `res.json({})`           | Sends a JSON response      |
-| `res.status(404)`        | Sets the status code       |
-| `res.redirect('/other')` | Redirects to another route |
+| Method                   | Description                                                                  |
+| ------------------------ | ---------------------------------------------------------------------------- |
+| `res.send('text')`       | Sends plain text                                                             |
+| `res.json({})`           | Sends a JSON response                                                        |
+| `res.status(404)`        | Sets the status code                                                         |
+| `res.redirect('/other')` | Redirects to another route                                                   |
+| `res.locals`             | storage object that lives **only for the duration of a single HTTP request** |
+Middleware
+```js
+app.use((req, res, next) => {
+    res.locals.userId = 'abc123';
+    next();
+});
+```
+Router handler
+```js
+app.get('/profile', (req, res) => {
+    const id = res.locals.userId; // 'abc123'
+    res.send(`Your user ID is ${id}`);
+});
+```
+
+
 ```js
  await client.connect();
  const db = client.db(dbName);

@@ -9,6 +9,7 @@
 	- [[Task 2 Cohort 2]]
 - [[Element of Software construct]]
 - [[Express.js]]
+- **[[Hotel Booking]]**
 - [[HTML]]
 - [[JavaScript]]
 - [[MySQL]]
