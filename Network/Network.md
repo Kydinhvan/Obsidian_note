@@ -4,6 +4,7 @@
 - [[Network security]]
 - [[Network]]
 - [[Ping and Traceroute - Lab]]
+- [[Python Cryptography - Lab]]
 
 %% End Waypoint %%
 

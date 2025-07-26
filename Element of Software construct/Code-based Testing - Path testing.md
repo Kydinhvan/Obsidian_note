@@ -47,7 +47,5 @@ So here's what could go wrong:
 This is a **compound Boolean expression** composed of 3 **atomic conditions**:
 
 - `A: x > 10`
-    
 - `B: y < 5`
-    
 - `C: x === y`
