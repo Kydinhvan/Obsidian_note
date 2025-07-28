@@ -112,8 +112,9 @@ In HDFS:
 In an Hadoop setup, the erasure coding configuration is RS(12,6)
 1. What is the storage overhead? -> m / k -> 6/12 = 50%
 2. What is the storage efficiency? -> 12/18 = 66.7%
-3. What is the fault tolerance level? 
+3. What is the fault tolerance level? (how many rows we can afford to lose)
 	- Total blocks stored = 12 + 6 = 18 blocks = a **codeword**
+	- **can lose 6 parity blocks** (redundant, calculated via linear combinations)
 4. What is the dimension of the Generator Matrix? -> GT is size `(k + m) × k`
 	- 18 × 12
 
