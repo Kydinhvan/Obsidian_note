@@ -1,3 +1,4 @@
+
 ### **Overview of Big Data and HDFS**
 - **Big Data** is characterized by the 3Vs: **Volume**, **Velocity**, and **Variety**. 
 	- Two additional Vs often considered are **Veracity** and **Value**.
