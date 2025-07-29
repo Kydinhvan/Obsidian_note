@@ -19,7 +19,8 @@
 - [[Relational Model]]
 - [[SQL]]
 - [[Storage (Internal DBMs)]]
-- [[Transaction Concurrency]]
-- [[Transaction Recovery]]
+- **Transaction**
+	- [[Concurrency Control (Transaction)]]
+	- [[Transaction Recovery]]
 
 %% End Waypoint %%
