@@ -268,3 +268,6 @@ property: d, each node list is from d to d $*$ 2 (only apply to non-root node)
 - **Unclustered**:
     - Index points to scattered records.
 
+
+#### Dirty pages
+When a transaction modifies a data page in memory (buffer pool), it becomes a **dirty page** because the change hasn't yet been written to disk.

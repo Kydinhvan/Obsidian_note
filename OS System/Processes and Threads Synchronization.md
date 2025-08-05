@@ -134,8 +134,20 @@ the moment Pj resumes it now can enter CS. -> Pj waits at most one CS length as
 
 ---
 ## Synchronisation Hardware
-Atomic Instructions (doesn't mean 1 clk cycle only)
+Hardware locking -> Atomic Instructions (doesn't mean 1 clk cycle only)
 No other CPU/core can interrupt or observe a partial update
+### Preventing Interrupts
+You know this as a non-preemptive approach [[OS Kernel Roles#Pre-emptive Kernel|(preemptive meaning)]], and some kernels are non-preemptive (non-interruptible) and therefore will not face the race condition in the kernel level itself
+
+We can intentionally prevent interrupts from occurring while a shared variable was being modified.
+
+This only works in **single-core** systems and is **not** feasible in multiprocessor environments because:
+- Time consuming, need to pass message to all processors
+- Affects system clocks
+- Decreases efficiency, defeats the purpose of multiprocessors.
+
+### Atomic Instruction
+CPU 1 and CPU 2 are trying to access same mem location, Ram check and see that CPU 1 is accessing the location, hence issuing a BUSY interrupt to CPU 2
 
 ---
 ## Software Spinlocks and Mutex Locks

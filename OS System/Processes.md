@@ -46,6 +46,11 @@ context switch is overhead: extra work, time, mem usage that is required to mana
 
 right side idle is overhead, no useful work done
 
+
+---
+## Mode Switch 
+
+
 ---
 ## Process Scheduling Detail
 - The objective of **multiprogramming** is to have some process running at all times, to maximize CPU utilization. [[OS Kernel Roles#^mulprogram|Multiprogramming]]
