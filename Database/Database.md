@@ -17,11 +17,11 @@
 - [[Queries]]
 - [[Relational Algebra]]
 - [[Relational Model]]
+- [[Spark]]
 - [[SQL]]
 - [[Storage (Internal DBMs)]]
 - **Transaction**
 	- [[Concurrency Control (Transaction)]]
-	- [[Spark]]
 	- [[Transaction Recovery]]
 
 %% End Waypoint %%
