@@ -22,6 +22,20 @@ A **recursive** DNS lookup is where a DNS server communicates with several other
 
 >[!note] Type of DNS query (whether iterative or recursive) is determined by the client and the configuration of the DNS server receiving the query.
 
+
+# The hirarchy
+#### What Root DNS Servers Do:
+- They are authoritative **only for the root zone (`.`)**.
+- They **do not store records** for specific domains like `example.com` or `google.com`.
+- Instead, they **delegate** queries to the **Top-Level Domain (TLD) servers** (like `.com`, `.org`, `.net`).
+
+#### 🌐 DNS Hierarchy:
+1. **Root DNS servers** → point to
+2. **TLD servers** (e.g., `.com`) → point to
+3. **Authoritative name servers** for domains (e.g., `example.com`)
+
+So, the root servers only know where to **find** the TLD servers, not the final domain details.
+
 # Activity
 
 ```shell
