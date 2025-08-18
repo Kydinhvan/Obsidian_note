@@ -1,8 +1,6 @@
 %% Begin Waypoint %%
 - [[Code-based Testing - Path testing]]
 - **Cohort Excercise**
-	- **CH Note**
-		- **W3**
 	- **CH1**
 		- [[Exercise 1]]
 		- [[Exercise 2]]

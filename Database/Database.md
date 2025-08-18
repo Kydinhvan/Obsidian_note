@@ -9,7 +9,6 @@
 - [[Hadoop Distributed File System]]
 - [[Intro to Database]]
 - **LAB**
-	- **LAB1**
 	- [[SimpleDB Architecture]]
 - [[MapReduce]]
 - [[Normalisation]]
