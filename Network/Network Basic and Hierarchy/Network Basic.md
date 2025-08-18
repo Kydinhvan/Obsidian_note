@@ -175,15 +175,28 @@ Example protocols: HTTP/HTTPS (Web), SMTP (Email), DNS (Domain), SSH (Secure log
 ***Transfers application messages** between processes across the network*
 
 **Key protocols**:
-- **TCP**: Reliable, connection-oriented (used for web browsing, email)
+- **TCP**: Reliable, connection-oriented (used for web browsing, email) 
 	- Connection setup/teardown
 	- Flow control
 	- Congestion control
 	- Packet reordering
-- **UDP**: Unreliable, connectionless (used for video streaming, DNS)
+- **UDP**: Unreliable, connectionless (used for video streaming, [[Internet Naming & Addressing#^a516da|DNS]])
 	- Does not guarantee delivery or order of packets, making it faster but less reliable
 
 >A transport layer packet of information is called a **segment**
+
+### TCP
+TCP socket is identified by a 4 tuple: 
+`(client IP, client port, server IP, server port)`
+
+Because:
+- Many clients can connect to the same server at the same time
+- Servers might run multiple services on different ports (HTTP on 80, HTTPS on 443)
+- Clients can make **multiple connections** to the same serve
+
+The 4-tuple ensures **every TCP connection is unique**, even if:
+- Same client connects to the same server again
+- Multiple clients talk to same server
 
 ## Network Layer
 *Handles **routing and addressing** of packets across multiple networks*
