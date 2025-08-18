@@ -17,3 +17,4 @@ Each task operates on a **partition** of your data. Whether one task can directl
     - Combines two datasets, but each output still depends on a single input partition.
 3. **`join with inputs co-partitioned`**:
     - If the inputs are partitioned in the same way (e.g., on the same key), join can be done locally
+

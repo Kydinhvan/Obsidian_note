@@ -2,10 +2,12 @@
 - [[Application Layer]]
 - **DNS Record and Protocol**
 	- [[DNS Records and Protocol]]
+- [[HTTP and HTTPs]]
 - **[[Internet Naming & Addressing]]**
 	- [[Internet Naming & Addressing]]
 	- [[Pset Internet Naming & Addressing]]
 - **Lab**
+	- [[HTCPCP]]
 	- [[Ping and Traceroute - Lab]]
 	- [[Python Cryptography - Lab]]
 - **Network Basic and Hierarchy**

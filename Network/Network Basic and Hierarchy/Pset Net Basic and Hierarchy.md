@@ -25,4 +25,40 @@ A student builds a program to send short messages between two devices across net
 > - Loss recovery is a separate layer responsibility
 
 ### Ans:
-- The internet t
+- The internet forward packets but does not guarantee it will arrive or arrive in order
+- because it might be dropped along its route. 
+- route forward packets using queue
+
+
+# Q3
+## Hint
+- Routers forward based on longest-prefix match
+- TTL is decremented at each hop and drops the packet at 0
+- Loops may not generate errors unless explicitly logged
+- Diagnostic tools rely on TTL to map routes
+- Dynamic routing protocols detect and resolve inconsistencies
+## Ans
+- What causes a routing loop in a packet-switched network?
+	Routing loop happen: < 2 routers forward packets to each other in a cycle because they believe the other is the valid next hop destination
+- How does the TTL field prevent infinite loops?
+	Time to live field is a counter in the IP packet, decrease TTL by one at every router. Packet is discarded at 0 TTL
+- Why does the packet “vanish” instead of returning an error?
+	TTL expires, silent dropping
+- How could the student detect that a loop occurred?
+	use traceroute - it observe TTL expiration at each hop
+- What are safer alternatives to manual static routing?
+
+# Q4
+
+**Hints**:
+- ISPs connect through upstream transit providers
+-  Not all access networks share the same paths
+- Traffic may reroute around failures only if alternate agreements exist
+- The server can be up even if it is unreachable to some users
+
+## Ans
+- Why might a website be reachable from one network but not another?
+- What role does peering and ISP hierarchy play in this outcome?
+- Why does the issue not lie with the university’s server?
+- How could the student confirm the website is still online?
+- What does this reveal about the structure of the Internet?

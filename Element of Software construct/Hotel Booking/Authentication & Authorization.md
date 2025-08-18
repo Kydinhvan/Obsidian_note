@@ -67,7 +67,13 @@ The client then includes this JWT in subsequent requests to access protected res
 *JWTs can contain claims (information about the user) like roles (e.g., admin, editor, user), permissions, or other attributes.*
 
 The server can inspect these claims within the JWT to determine what resources the user is authorized to access.
-
+## **JWT Token Behavior**
+### **How It Works:**
+1. **Client receives token** after successful login
+2. **Client stores token** (localStorage, sessionStorage, cookies)
+3. **Client sends token** with every protected request
+4. **Server verifies token** using middleware
+5. **Server extracts user info** from token payload
 
 ## **How to Use JWT in Protected Routes**
 

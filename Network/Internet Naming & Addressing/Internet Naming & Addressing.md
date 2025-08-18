@@ -1,5 +1,5 @@
-*DNS is a **distributed** and **hierarchical** database.* 
-	Distributed system of servers provide scalability.
+*DNS is a **distributed** and **hierarchical** database.* ^dns
+	Distributed system of servers provide scalability. ^a516da
 
 The presence of DNS **protects** domains. The same name can point to a different physical machines hence allows for:
 - Strong modularity,
