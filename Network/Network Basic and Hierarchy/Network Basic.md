@@ -58,7 +58,7 @@ Example by layer
 - 24 slots per second
 - Bit rate = 48 Mbps
 - Connection setup time = 800 ms
-# Circuit Switching
+	# Circuit Switching
 *A dedicated path (circuit) is established between two devices before they start communicating. This remain reserved for the entire duration of communication session*
 
 **Guaranteed Bandwidth**: Resources (e.g., bandwidth) are pre-allocated (=)

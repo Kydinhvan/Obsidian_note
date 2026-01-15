@@ -123,3 +123,22 @@ where sid IN (select max(sid) from Enrolled);
 select name from Student
 where sid >= ALL (select sid from Enrolled);
 ```
+
+## Other
+1. _**Extract Month and Year:**_  
+    Use the `LEFT` function to get the `YYYY-MM` part from the `trans_date`. The `LEFT()`function extracts a number of characters from a string (starting from left).
+
+2. _**Group By Month and Country:**_  
+    Group the transactions by the extracted month and country.
+
+3. _**Count Transactions:**_  
+    Use `COUNT(id)` to count all transactions per group.
+
+4. _**Count Approved Transactions:**_  
+    Use `SUM(state = 'approved')` to count approved transactions, leveraging the fact that boolean expressions return 1 for true and 0 for false.
+
+5. _**Sum Total Amounts:**_  
+    Use `SUM(amount)` to sum the transaction amounts for all transactions per group.
+
+6. _**Sum Approved Amounts:**_  
+    Use `SUM((state = 'approved') * amount)` to sum the transaction amounts for approved transactions, ensuring only approved amounts are summed.
